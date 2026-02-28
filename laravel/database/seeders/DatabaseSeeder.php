@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Project;
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +17,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Crear proyecto con muchas tareas en progreso
+        $projectBig = Project::factory()->create([
+            'name' => 'Proyecto Muchas Tareas',
         ]);
+
+        Task::factory()->count(5)->inProgress()->create([
+            'project_id' => $projectBig->id,
+        ]);
+
+        // Crear proyecto con tareas vencidas
+        $projectOverdue = Project::factory()->create([
+            'name' => 'Proyecto Tareas Vencidas',
+        ]);
+
+        Task::factory()->count(3)->overdue()->create([
+            'project_id' => $projectOverdue->id,
+        ]);
+
+        // Crear prouyectos aleatorios
+        Project::factory(3)->hasTasks(4)->create();
     }
 }

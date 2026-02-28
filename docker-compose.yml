@@ -1,0 +1,44 @@
+services:
+  app:
+    image: laravelfans/laravel:12
+    container_name: api
+    env_file:
+      - ./laravel/.env
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./laravel:/var/www/laravel
+    depends_on:
+      - mysql
+
+  queue:
+    image: laravelfans/laravel:12
+    container_name: queue_worker
+    restart: unless-stopped
+    volumes:
+      - ./laravel:/var/www/laravel
+    env_file:
+      - ./laravel/.env
+    command: php artisan queue:work --tries=3 --timeout=90
+    depends_on:
+      - mysql
+      - app
+
+  mysql:
+    image: mysql:8.0.45
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - ${MYSQL_PORT:-3306}:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootP@ssword123
+      - MYSQL_DATABASE=laravel
+      - MYSQL_USER=laravel
+      - MYSQL_PASSWORD=laravelP@ssword123
+
+volumes:
+  mysql_data:
+    driver: local

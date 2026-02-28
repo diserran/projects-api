@@ -9,6 +9,14 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'project_id',
+        'name',
+        'description',
+        'status',
+        'due_date',
+    ];
+
     protected function casts(): array
     {
         return [

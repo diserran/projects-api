@@ -14,6 +14,16 @@ class TaskResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'project_id' => $this->project_id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'status' => $this->status,
+            'due_date' => $this->due_date ? $this->due_date->toIso8601String() : null,
+            'created_at' => $this->created_at?->toIso8601String(),
+            'updated_at' => $this->updated_at?->toIso8601String(),
+            'project' => new ProjectResource($this->whenLoaded('project'))
+        ];
     }
 }

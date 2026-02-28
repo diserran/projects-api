@@ -9,6 +9,15 @@ class Task extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'due_date' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
+
     public function project() {
         return $this->belongsTo(Project::class);
     }

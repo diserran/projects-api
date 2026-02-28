@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Project;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
@@ -38,8 +38,8 @@ class TaskFactory extends Factory
     }
 
     /**
-    * Estado: Tarea En progreso
-    */
+     * Estado: Tarea En progreso
+     */
     public function inProgress(): static
     {
         return $this->state(fn (array $attributes) => [

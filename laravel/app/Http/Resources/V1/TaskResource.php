@@ -23,7 +23,7 @@ class TaskResource extends JsonResource
             'due_date' => $this->due_date ? $this->due_date->toIso8601String() : null,
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
-            'project' => new ProjectResource($this->whenLoaded('project'))
+            'project' => new ProjectResource($this->whenLoaded('project')),
         ];
     }
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class NotifyTaskCompletedJob implements ShouldQueue
 {
-    use Dispatchable, Queueable, InteractsWithQueue, SerializesModels;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     public $task;
 
@@ -23,7 +23,6 @@ class NotifyTaskCompletedJob implements ShouldQueue
     {
         $this->task = $task;
     }
-
 
     /**
      * Execute the job.

@@ -16,7 +16,7 @@ class ProjectController extends Controller
     {
         // Ordenamos de por fecha de creación descendente
         $projects = Project::latest()->paginate(10);
-        
+
         return ProjectResource::collection($projects);
     }
 

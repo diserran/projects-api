@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Requests\V1\StoreTaskRequest;
 use App\Http\Requests\V1\UpdateTaskRequest;
-use Illuminate\Http\Request;
-use App\Services\TaskService;
 use App\Http\Resources\V1\TaskResource;
 use App\Models\Project;
 use App\Models\Task;
+use App\Services\TaskService;
 
 class TaskController extends Controller
 {

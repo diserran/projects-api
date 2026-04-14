@@ -1,29 +1,33 @@
 services:
   app:
-    image: laravelfans/laravel:12
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: api
     env_file:
       - ./laravel/.env
     restart: unless-stopped
     ports:
-      - 8000:80
+      - 8000:8000
+      - 5173:5173
     volumes:
       - ./laravel:/var/www/laravel
+      - /var/www/laravel/vendor
     depends_on:
       - mysql
 
-  queue:
-    image: laravelfans/laravel:12
-    container_name: queue_worker
-    restart: unless-stopped
-    volumes:
-      - ./laravel:/var/www/laravel
-    env_file:
-      - ./laravel/.env
-    command: php artisan queue:work --tries=3 --timeout=90
-    depends_on:
-      - mysql
-      - app
+  # queue:
+  #   image: laravelfans/laravel:12
+  #   container_name: queue_worker
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./laravel:/var/www/laravel
+  #   env_file:
+  #     - ./laravel/.env
+  #   command: php artisan queue:work --tries=3 --timeout=90
+  #   depends_on:
+  #     - mysql
+  #     - app
 
   mysql:
     image: mysql:8.0.45

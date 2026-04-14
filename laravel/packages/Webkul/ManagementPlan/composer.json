@@ -1,0 +1,25 @@
+{
+    "name": "krayin/laravel-management-plan",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Webkul",
+            "email": "support@webkul.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Webkul\\ManagementPlan\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Webkul\\ManagementPlan\\Providers\\ManagementPlanServiceProvider"
+            ],
+            "aliases": {}
+        }
+    },
+    "minimum-stability": "dev"
+}
